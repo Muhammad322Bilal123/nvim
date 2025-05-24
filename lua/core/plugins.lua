@@ -7,16 +7,31 @@ vim.cmd [[packadd packer.nvim]]
 require("packer").startup(function(use)
   -- Packer manages itself
   use "wbthomason/packer.nvim"
-use {
-  'neovim/nvim-lspconfig'
-}
+use 'mbbill/undotree'
+
   -- Add this line to your packer.nvim plugin list and run :PackerSync
+
   use {
     'feline-nvim/feline.nvim',
     config = function()
       require('core.statusline')
     end,
   }
+
+
+  use({
+  "jose-elias-alvarez/null-ls.nvim",
+  requires = { "nvim-lua/plenary.nvim" },
+})
+
+
+
+
+  use({
+  "nvimtools/none-ls.nvim",
+  requires = { "nvim-lua/plenary.nvim" },
+})
+
 
 
   use {
@@ -111,29 +126,6 @@ use {
   use "nvim-tree/nvim-tree.lua"
   use "nvim-tree/nvim-web-devicons"
   
-  -- Neo Tree
-use {
-  "nvim-neo-tree/neo-tree.nvim",
-  branch = "v3.x",
-  requires = {
-    "nvim-lua/plenary.nvim",
-    "nvim-tree/nvim-web-devicons", -- optional
-    "MunifTanjim/nui.nvim",
-  },
-  config = function()
-    require("neo-tree").setup({
-      window = {
-        mappings = {
-          -- Custom mapping for diagnostics
-          ["c"] = function()
-            vim.diagnostic.open_float(nil, { focusable = true })
-          end,
-        },
-      },
-    })
-  end,
-}
-
 
  -- Color theme
   use "navarasu/onedark.nvim"

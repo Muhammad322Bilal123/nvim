@@ -8,7 +8,7 @@ require("core.settings")     -- Vim options like number, tab settings
 require("core.mapping")      -- Keybindings
 require("core.colorscheme")  -- Theme
 require("core.lsp")          -- LSP config
-require("plugins.neotree")   -- Neotree
+require("plugins.nvimtree")   -- Neotree
 require("plugins.harpoon")   -- Harpoon
 require("plugins.feline")
 require("core.statusline")
@@ -22,9 +22,10 @@ require("core.diagnostics_autocmds").setup()
 require('core.diagnostics_keymaps').setup()
 require('core.snippets').setup()
 require'lspconfig'.pyright.setup{}
-require("plugins.dap_python").setup()
-require("core.dap_python")
-require('core.dap_keymaps')
+require("lsp.python_format_lint")
+--require("plugins.dap_python").setup()
+--require("core.dap_python")
+--require('core.dap_keymaps')
 require("luasnip.loaders.from_vscode").lazy_load()
 
 
@@ -133,3 +134,5 @@ vim.g.neovide_font_features = {}
 
 
 
+vim.opt.undofile = true
+vim.opt.undodir = vim.fn.stdpath("config") .. "/undo"

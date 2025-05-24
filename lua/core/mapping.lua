@@ -7,9 +7,7 @@ map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Find Files" })
 map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { desc = "Grep Text" })
 
 -- File explorer
--- Toggle Neo-tree with <leader>e
-vim.keymap.set("n", "<leader>e", ":Neotree toggle<CR>", { desc = "Toggle Neo-tree" })
-
+vim.api.nvim_set_keymap('n', '<leader>e', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
 
 -- Diagnostic navigation
 map("n", "<leader>d", vim.diagnostic.open_float, { desc = "Open Diagnostic" })
@@ -52,4 +50,11 @@ vim.keymap.set('n', '<F11>', function() require('dap').step_into() end, opts)
 vim.keymap.set('n', '<F12>', function() require('dap').step_out() end, opts)
 vim.keymap.set('n', '<leader>dr', function() require('dap').repl.open() end, opts)
 vim.keymap.set('n', '<leader>dq', function() require('dap').terminate() end, opts)
+
+
+
+vim.keymap.set("n", "<leader>to", vim.cmd.UndotreeToggle)
+
+
+
 
