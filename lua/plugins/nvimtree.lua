@@ -11,14 +11,8 @@ require("nvim-tree").setup({
     highlight_git = true,
     root_folder_modifier = ":t",
     indent_markers = {
-      enable = true,
+      enable = false,
       inline_arrows = true,
-      icons = {
-        corner = "└ ",
-        edge = "│ ",
-        item = "│ ",
-        none = "  ",
-      },
     },
     indent_width = 0,
   },
@@ -48,6 +42,9 @@ require("nvim-tree").setup({
   },
 })
 
+
+
+
 -- Make nvim-tree background transparent by setting these highlight groups
 vim.cmd [[
   augroup NvimTreeTransparency
@@ -59,4 +56,5 @@ vim.cmd [[
     autocmd FileType NvimTree highlight SignColumn guibg=NONE ctermbg=NONE
   augroup END
 ]]
+
 

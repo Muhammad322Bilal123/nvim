@@ -2,7 +2,8 @@
 vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
   pattern = "*",
   callback = function()
-    if vim.bo.modified then  -- only save if buffer is modified
+    -- Only save if buffer is modified AND it's a normal file buffer
+    if vim.bo.modified and vim.bo.buftype == "" then
       vim.cmd("silent write")
     end
   end,

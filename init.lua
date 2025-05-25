@@ -16,13 +16,16 @@ require("core.providers")
 require("core.components")
 require("core.autosave")
 require("plugins.cmp")
+require("plugins.alpha")
 require("core.diagnostics_sign").setup()
+require("plugins.indentline")
 require("core.diagnostics").setup()
 require("core.diagnostics_autocmds").setup()
 require('core.diagnostics_keymaps').setup()
 require('core.snippets').setup()
 require'lspconfig'.pyright.setup{}
 require("lsp.python_format_lint")
+
 --require("plugins.dap_python").setup()
 --require("core.dap_python")
 --require('core.dap_keymaps')
@@ -136,3 +139,13 @@ vim.g.neovide_font_features = {}
 
 vim.opt.undofile = true
 vim.opt.undodir = vim.fn.stdpath("config") .. "/undo"
+
+vim.opt.termguicolors = true
+
+
+--vim.g.undotree_WindowLayout = 2  -- horizontal split at bottom
+--vim.g.undotree_SplitHeight = 10  -- height of split in lines
+
+-- Open terminal in horizontal split with 15 lines height
+vim.api.nvim_set_keymap('n', '<leader>te', ':belowright split | resize 12 | terminal<CR>', { noremap = true, silent = true })
+

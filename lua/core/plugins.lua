@@ -18,6 +18,49 @@ use 'mbbill/undotree'
     end,
   }
 
+  use {
+  'nvim-treesitter/nvim-treesitter',
+}
+
+
+use {
+  'nvim-tree/nvim-tree.lua',
+  requires = {
+    'nvim-tree/nvim-web-devicons', -- optional, for file icons
+  },
+}
+
+use "navarasu/onedark.nvim"
+
+-- Treesitter setup for syntax highlighting and structure
+require'nvim-treesitter.configs'.setup {
+  highlight = { enable = true },  -- enables syntax highlighting
+
+  rainbow = {
+    enable = true,               -- enables rainbow bracket coloring
+    extended_mode = true,        -- highlight non-bracket delimiters like HTML tags
+    max_file_lines = nil,        -- no limit on file lines
+  }
+}
+
+  use {
+  "goolord/alpha-nvim",
+  requires = { "nvim-tree/nvim-web-devicons" },
+  config = function()
+    require("alpha").setup(require("alpha.themes.dashboard").config)
+  end
+}
+
+use {
+  "L3MON4D3/LuaSnip",
+  tag = "v1.*",  -- optional: use latest stable release
+  config = function()
+    require("luasnip.loaders.from_vscode").lazy_load()
+  end
+}
+
+
+
 
   use({
   "jose-elias-alvarez/null-ls.nvim",
@@ -97,10 +140,24 @@ use {
   use "hrsh7th/cmp-nvim-lsp"
   use "L3MON4D3/LuaSnip"
 
-  -- Treesitter for better syntax highlighting
-  use {
-    "nvim-treesitter/nvim-treesitter",
-  }
+  
+use {
+  "lukas-reineke/indent-blankline.nvim",
+  main = "ibl",
+  config = function()
+    require("ibl").setup {
+      indent = {
+        char = "│",
+      },
+      scope = {
+        enabled = true,
+        show_start = false,
+        show_end = false,
+        char = "│",
+      },
+    }
+  end,
+}
 
    -- plenary.nvim: Utility functions used by many plugins
   use 'nvim-lua/plenary.nvim'
@@ -114,20 +171,5 @@ use {
   end,
 }
 
-
-  -- Telescope fuzzy finder
-  use {
-    "nvim-telescope/telescope.nvim",
-    tag = "0.1.4",
-    requires = { "nvim-lua/plenary.nvim" }
-  }
-
-  -- File explorer
-  use "nvim-tree/nvim-tree.lua"
-  use "nvim-tree/nvim-web-devicons"
-  
-
- -- Color theme
-  use "navarasu/onedark.nvim"
 end)
 
