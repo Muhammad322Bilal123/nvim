@@ -15,6 +15,13 @@ map("n", "[d", vim.diagnostic.goto_prev, { desc = "Prev Diagnostic" })
 map("n", "]d", vim.diagnostic.goto_next, { desc = "Next Diagnostic" })
 vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "Find Files" })
 
+local map = vim.keymap.set
+
+-- Custom Undo Viewer (Floating)
+map("n", "<leader>mb", function()
+  require("core.undo_viewer").show()
+end, { desc = "Open Custom Undo Viewer" })
+
 -- Harppoon con
 vim.api.nvim_set_keymap("n", "<leader>a", ":lua require('harpoon.mark').add_file()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>h", ":lua require('harpoon.ui').toggle_quick_menu()<CR>", { noremap = true, silent = true })
