@@ -15,7 +15,7 @@ require("core.statusline")
 require("core.providers")
 require("core.components")
 require("core.autosave")
-require("core.undo_viewer")
+--require("core.undo_viewer")
 require("plugins.cmp")
 require("plugins.alpha")
 require("core.diagnostics_sign").setup()
@@ -149,5 +149,6 @@ vim.opt.termguicolors = true
 
 -- Open terminal in horizontal split with 15 lines height
 vim.api.nvim_set_keymap('n', '<leader>te', ':belowright split | resize 12 | terminal<CR>', { noremap = true, silent = true })
+
 
 
