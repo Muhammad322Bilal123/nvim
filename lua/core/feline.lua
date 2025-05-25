@@ -1,3 +1,4 @@
+require("feline").setup()
 
 
 local M = {}

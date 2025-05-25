@@ -1,8 +1,7 @@
--- Load and apply colorscheme
 
-require('onedark').setup {
-  transparent = false,  -- Make sure this is false, not true
+local onedark = require("onedark")
+onedark.setup {
+  transparent = false,
+  style = "dark", -- or "darker", "cool", "deep", "warm", "warmer", "light"
 }
-require('onedark').load()
-vim.cmd("colorscheme onedark")
-
+onedark.load()
