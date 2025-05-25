@@ -2,6 +2,7 @@ require("nvim-tree").setup({
   sort_by = "name",
   view = {
     width = 30,
+    --preserve_window_proportions = true,
     side = "right",
     number = false,
     relativenumber = false,

@@ -45,15 +45,18 @@ vim.keymap.set({'i', 's'}, '<C-k>', function()
 end, opts)
 
 
-local opts = { noremap = true, silent = true }
-vim.keymap.set('n', '<F9>', function() require('dap').toggle_breakpoint() end, opts)
-vim.keymap.set('n', '<F5>', function() require('dap').continue() end, opts)
-vim.keymap.set('n', '<F10>', function() require('dap').step_over() end, opts)
-vim.keymap.set('n', '<F11>', function() require('dap').step_into() end, opts)
-vim.keymap.set('n', '<F12>', function() require('dap').step_out() end, opts)
-vim.keymap.set('n', '<leader>dr', function() require('dap').repl.open() end, opts)
-vim.keymap.set('n', '<leader>dq', function() require('dap').terminate() end, opts)
 
+
+local dap = require('dap')
+local dapui = require('dapui')
+
+vim.keymap.set('n', '<C-d>', dap.continue)           -- Ctrl+s to start/continue debugging
+vim.keymap.set('n', '<C-n>', dap.step_over)          -- Ctrl+n to step over
+vim.keymap.set('n', '<C-i>', dap.step_into)          -- Ctrl+i to step into
+vim.keymap.set('n', '<C-o>', dap.step_out)           -- Ctrl+o to step out
+vim.keymap.set('n', '<C-b>', dap.toggle_breakpoint)  -- Ctrl+b to toggle breakpoint
+vim.keymap.set('n', '<C-r>', dap.repl.open)          -- Ctrl+r to open debug REPL
+vim.keymap.set('n', '<C-u>', dapui.toggle)           -- Ctrl+u to toggle dap UI
 
 
 vim.keymap.set("n", "<leader>to", vim.cmd.UndotreeToggle)

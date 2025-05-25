@@ -2,6 +2,8 @@ vim.g.mapleader = " "
 vim.opt.fillchars:append { vert = " " }
 
 
+vim.o.sessionoptions = "buffers,curdir,tabpages,winsize,help,globals,skiprtp,folds,localoptions"
+
 -- Load all core modules
 require("core.plugins")      -- Packer and plugin definitions
 require("core.settings")     -- Vim options like number, tab settings
@@ -15,11 +17,11 @@ require("core.statusline")
 require("core.providers")
 require("core.components")
 require("core.autosave")
---require("core.undo_viewer")
 require("plugins.cmp")
 require("plugins.alpha")
 require("core.diagnostics_sign").setup()
 require("plugins.indentline")
+require('core.debugy').setup()
 require("core.diagnostics").setup()
 require("core.diagnostics_autocmds").setup()
 require('core.diagnostics_keymaps').setup()
