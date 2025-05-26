@@ -1,7 +1,9 @@
+-- core/colorscheme.lua
+local rosepine = require("rose-pine")
 
-local onedark = require("onedark")
-onedark.setup {
-  transparent = false,
-  style = "dark", -- or "darker", "cool", "deep", "warm", "warmer", "light"
-}
-onedark.load()
+rosepine.setup({
+  dark_variant = "moon",
+  transparent = true,
+})
+
+vim.cmd("colorscheme rose-pine")

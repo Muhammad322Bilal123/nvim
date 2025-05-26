@@ -20,3 +20,11 @@ lspconfig.pyright.setup({
   capabilities = capabilities,
 })
 
+require('lspconfig').pyright.setup{
+  settings = {
+    python = {
+      pythonPath = "/home/biiiiai/Desktop/AI_prac/venv/venv/bin/python3"
+    }
+  }
+}
+

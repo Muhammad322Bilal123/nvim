@@ -1,11 +1,3 @@
-vim.opt.termguicolors = true  -- Make sure termguicolors is enabled
-
-require("feline").setup()
-
--- Make entire statusline background transparent
-vim.api.nvim_set_hl(0, 'StatusLine', { bg = 'NONE' })
-vim.api.nvim_set_hl(0, 'StatusLineNC', { bg = 'NONE' })
-
 local M = {}
 
 M.mode = {
@@ -25,15 +17,16 @@ M.mode = {
   end,
   hl = function()
     local mode_colors = {
-      NORMAL = 'cyan',
-      INSERT = 'green',
-      VISUAL = 'yellow',
-      ['V-LINE'] = 'yellow',
-      ['V-BLOCK'] = 'yellow',
-      REPLACE = 'red',
-      COMMAND = 'magenta',
-      TERMINAL = 'orange',
+      NORMAL   = "#7dcfff", -- cyan
+      INSERT   = "#9ece6a", -- green
+      VISUAL   = "#e0af68", -- yellow
+      ["V-LINE"]  = "#e0af68",
+      ["V-BLOCK"] = "#e0af68",
+      REPLACE  = "#f7768e", -- red
+      COMMAND  = "#bb9af7", -- magenta
+      TERMINAL = "#ff9e64", -- orange
     }
+
     local mode_map = {
       n = "NORMAL",
       i = "INSERT",
@@ -46,11 +39,12 @@ M.mode = {
     }
     local current_mode = vim.api.nvim_get_mode().mode
     local mode_name = mode_map[current_mode] or current_mode
+    local bg_color = mode_colors[mode_name] or "#3b4261"
 
-    return { fg = mode_colors[mode_name] or 'gray', bg = 'NONE', bold = true }
+    return { fg = "#000000", bg = bg_color, bold = true }
   end,
-  left_sep = ' ',
-  right_sep = ' ',
+  left_sep = " ",
+  right_sep = " ",
 }
 
 return M

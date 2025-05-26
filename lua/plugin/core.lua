@@ -17,12 +17,11 @@ return {
     config = function() require("core.autosave") end,
   },
 
-  -- Statusline (Feline or Lualine)
+  -- Statusline (Feline)
   {
     "feline-nvim/feline.nvim",
     config = function() require("core.feline") end,
   },
-
 
   -- Treesitter
   {
@@ -44,12 +43,12 @@ return {
     config = function() require("core.alpha") end,
   },
 
-  -- Theme
+  -- Theme Rose Pine
   {
-    "navarasu/onedark.nvim",
+    "rose-pine/neovim",
+    name = "rose-pine",
     config = function()
-      require("onedark").setup({ transparent = false, style = "dark" })
-      require("onedark").load()
+      require("core.colorscheme")
     end,
   },
 
@@ -69,14 +68,40 @@ return {
     config = function() require("nvim-autopairs").setup({}) end,
   },
 
-  -- LSP and tooling
-  { "neovim/nvim-lspconfig" },
+  -- ✅ Merged LSP & Tooling (no extra return!)
+  {
+    'neovim/nvim-lspconfig',
+    config = function()
+      require('core.lsp')
+      require('lspconfig').pyright.setup{
+        settings = {
+          python = {
+            pythonPath = "/home/biiiiai/Desktop/AI_prac/venv/venv/bin/python3"
+          }
+        }
+      }
+    end,
+  },
+
   {
     "williamboman/mason.nvim",
-    config = function() require("mason").setup() end,
+    config = function()
+      require("mason").setup()
+    end,
   },
-  { "jose-elias-alvarez/null-ls.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
-  { "nvimtools/none-ls.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
+
+  -- Null-ls for formatting, diagnostics, and code actions
+
+  {
+    "nvimtools/none-ls.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("core.null-ls") -- or wherever your config is
+    end,
+  },
+  
+  
+
 
   -- Indentation guides
   {
@@ -95,3 +120,4 @@ return {
   -- Neotest support
   { "nvim-neotest/nvim-nio" },
 }
+   
