@@ -23,6 +23,7 @@ return {
     config = function() require("core.feline") end,
   },
 
+
   -- Treesitter
   {
     "nvim-treesitter/nvim-treesitter",
@@ -100,7 +101,13 @@ return {
     end,
   },
   
-  
+  {
+    'nvim-telescope/telescope.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      require('core.telescope').setup{}
+    end,
+  },  
 
 
   -- Indentation guides

@@ -25,3 +25,6 @@ api.nvim_set_hl(0, "StatusLineBlueFG", { fg = "#93C5FD", bg = "NONE", ctermbg = 
 -- Transparent statusline background
 api.nvim_set_hl(0, "StatusLine", { bg = "NONE", ctermbg = "NONE" })
 api.nvim_set_hl(0, "StatusLineNC", { bg = "NONE", ctermbg = "NONE" })
+
+
+

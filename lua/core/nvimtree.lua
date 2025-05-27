@@ -1,8 +1,8 @@
+
 require("nvim-tree").setup({
   sort_by = "name",
   view = {
-    width = 30,
-    --preserve_window_proportions = true,
+    width = 34,
     side = "right",
     number = false,
     relativenumber = false,
@@ -16,6 +16,19 @@ require("nvim-tree").setup({
       inline_arrows = true,
     },
     indent_width = 0,
+    icons = {
+      show = {
+        folder = true,
+      },
+      glyphs = {
+        folder = {
+          default = "",
+          open = "",
+          empty = "",
+          empty_open = "",
+        },
+      },
+    },
   },
   diagnostics = {
     enable = true,
@@ -43,11 +56,16 @@ require("nvim-tree").setup({
   },
 })
 
-
-
-
--- Make nvim-tree background transparent by setting these highlight groups
+-- Highlight groups for colors
 vim.cmd [[
+  highlight NvimTreeNormal guibg=NONE ctermbg=NONE
+  highlight NvimTreeEndOfBuffer guibg=NONE ctermbg=NONE
+  highlight NvimTreeFolderName guifg=#000000 ctermfg=0
+  highlight NvimTreeFileName guifg=#000000 ctermfg=0
+  highlight NvimTreeFolderIcon guifg=#0000FF ctermfg=21
+]]
+
+vim.cmd [[ 
   augroup NvimTreeTransparency
     autocmd!
     autocmd FileType NvimTree highlight NvimTreeNormal guibg=NONE ctermbg=NONE
@@ -57,5 +75,3 @@ vim.cmd [[
     autocmd FileType NvimTree highlight SignColumn guibg=NONE ctermbg=NONE
   augroup END
 ]]
-
-

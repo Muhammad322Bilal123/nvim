@@ -5,11 +5,12 @@ local map = vim.keymap.set
 -- Telescope plugin bindings
 -- ========================
 
--- <leader>ff: Open Telescope file finder to quickly find files in the project
-map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Find Files" })
+-- Paste from system clipboard in normal mode at cursor position
+vim.keymap.set('n', '<leader>p', '"+p', { desc = "Paste from clipboard" })
 
--- <leader>fg: Open Telescope live grep to search text content across files
-map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { desc = "Grep Text" })
+
+-- Yank entire file to system clipboard
+vim.keymap.set('n', '<leader>y', ':%y+<CR>', { desc = "Copy entire file to clipboard" })
 
 -- ========================
 -- File explorer (NvimTree)
