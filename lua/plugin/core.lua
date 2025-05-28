@@ -1,3 +1,4 @@
+
 return {
   -- Lazy manages itself
   { "folke/lazy.nvim", version = "*" },
@@ -14,7 +15,17 @@ return {
   -- Session management
   {
     "rmagatti/auto-session",
-    config = function() require("core.autosave") end,
+    opts = {
+      log_level = "info",
+      auto_session_enable_last_session = true,
+      auto_save_enabled = true,
+      auto_restore_enabled = true,
+      auto_session_suppress_dirs = { "~/", "~/Downloads", "/" },
+      lazy_support = true, -- ✅ ADD THIS LINE
+    },
+    config = function(_, opts)
+      require("auto-session").setup(opts)
+    end,
   },
 
   -- Statusline (Feline)
@@ -22,7 +33,6 @@ return {
     "feline-nvim/feline.nvim",
     config = function() require("core.feline") end,
   },
-
 
   -- Treesitter
   {
@@ -71,10 +81,10 @@ return {
 
   -- ✅ Merged LSP & Tooling (no extra return!)
   {
-    'neovim/nvim-lspconfig',
+    "neovim/nvim-lspconfig",
     config = function()
-      require('core.lsp')
-      require('lspconfig').pyright.setup{
+      require("core.lsp")
+      require("lspconfig").pyright.setup {
         settings = {
           python = {
             pythonPath = "/home/biiiiai/Desktop/AI_prac/venv/venv/bin/python3"
@@ -92,23 +102,21 @@ return {
   },
 
   -- Null-ls for formatting, diagnostics, and code actions
-
   {
     "nvimtools/none-ls.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
-      require("core.null-ls") -- or wherever your config is
+      require("core.null-ls")
     end,
   },
-  
-  {
-    'nvim-telescope/telescope.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    config = function()
-      require('core.telescope').setup{}
-    end,
-  },  
 
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("core.telescope").setup {}
+    end,
+  },
 
   -- Indentation guides
   {
@@ -126,5 +134,24 @@ return {
 
   -- Neotest support
   { "nvim-neotest/nvim-nio" },
+
+  -- ✅ Code Navigation Plugins
+  { "SmiteshP/nvim-navic" },
+  { "stevearc/aerial.nvim",
+    config = function()
+	    require("core.aerial")
+    end,
+    },
+  { "ray-x/lsp_signature.nvim" ,
+    config = function()
+	    require("core.lsp_signature")
+    end,
+	},
+  {
+    "kosayoda/nvim-lightbulb",
+    dependencies = { "antoinemadec/FixCursorHold.nvim" },
+    config = function()
+	    require("core.lightbulb")
+    end,
+  },
 }
-   

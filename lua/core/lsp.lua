@@ -1,30 +1,32 @@
 
-vim.o.completeopt = "menuone,noselect"
-
--- Load LSP config
 local lspconfig = require("lspconfig")
+local lsp_signature = require("lsp_signature")
+local navic = require("nvim-navic")
 
--- Setup Pyright
-lspconfig.pyright.setup{}
+local on_attach = function(client, bufnr)
+  -- Attach lsp_signature to the buffer
+  lsp_signature.on_attach({}, bufnr)
 
--- Enable completion using LSP omnifunc
-vim.cmd [[
-  autocmd FileType python setlocal omnifunc=v:lua.vim.lsp.omnifunc
-]]
+  -- Attach navic if the server supports document symbols
+  if client.server_capabilities.documentSymbolProvider then
+    navic.attach(client, bufnr)
+  end
 
-local lspconfig = require("lspconfig")
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
+  -- You can add other keymaps or buffer-specific setups here
+end
 
--- Setup Pyright
+-- Setup your LSP servers with this single on_attach
 lspconfig.pyright.setup({
-  capabilities = capabilities,
-})
-
-require('lspconfig').pyright.setup{
+  on_attach = on_attach,
   settings = {
     python = {
-      pythonPath = "/home/biiiiai/Desktop/AI_prac/venv/venv/bin/python3"
-    }
-  }
-}
+      pythonPath = "/home/biiiiai/Desktop/AI_prac/venv/venv/bin/python3",
+    },
+  },
+})
 
+-- Optional: highlight groups for signature window border
+vim.cmd([[
+  highlight! link LspSignatureActiveParameter Search
+  highlight! FloatBorder guifg=#89B4FA guibg=NONE
+]])

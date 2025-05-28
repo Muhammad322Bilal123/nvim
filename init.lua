@@ -20,7 +20,9 @@ require("lazy").setup(require("plugin.core"))
 
 -- Load core options, autocommands, mappings, debug config
 require("core.options")
+require('core.providers')
 require("core.autocmds")
+require('core.components')
 require("mapping")
 require("core.ui")
 require("core.diagnostics").setup()
@@ -40,3 +42,23 @@ vim.opt.relativenumber = true  -- Show relative numbers (optional, helpful for n
 vim.g.python3_host_prog = '/home/biiiiai/Desktop/AI_prac/venv/venv/bin/python3'
 
 
+local groups = {
+  "StatusLine", "StatusLineNC",
+  "StatusLineModeNormal", "StatusLineModeInsert", "StatusLineModeVisual", "StatusLineModeReplace", "StatusLineModeCommand", "StatusLineModeTerminal",
+  "StatusLineBlueFG", "StatusLineGit", "StatusLineDiagnostics",
+}
+
+for _, group in ipairs(groups) do
+  vim.api.nvim_set_hl(0, group, { bg = "NONE" })
+end
+
+-- Auto-save files on InsertLeave and BufLeave events
+vim.api.nvim_create_autocmd({"InsertLeave", "BufLeave"}, {   
+  pattern = "*",
+  callback = function()
+    if vim.bo.modified and vim.api.nvim_buf_get_option(0, "modifiable") then
+      vim.cmd("silent! write")
+    end
+  end,
+}
+)

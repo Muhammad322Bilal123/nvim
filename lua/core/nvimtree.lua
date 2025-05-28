@@ -2,7 +2,8 @@
 require("nvim-tree").setup({
   sort_by = "name",
   view = {
-    width = 34,
+    width = 30,
+    --preserve_window_proportions = true,
     side = "right",
     number = false,
     relativenumber = false,
@@ -56,13 +57,12 @@ require("nvim-tree").setup({
   },
 })
 
--- Highlight groups for colors
 vim.cmd [[
   highlight NvimTreeNormal guibg=NONE ctermbg=NONE
   highlight NvimTreeEndOfBuffer guibg=NONE ctermbg=NONE
-  highlight NvimTreeFolderName guifg=#000000 ctermfg=0
-  highlight NvimTreeFileName guifg=#000000 ctermfg=0
-  highlight NvimTreeFolderIcon guifg=#0000FF ctermfg=21
+  highlight NvimTreeFolderName guifg=#ffffff ctermfg=16
+  highlight NvimTreeFile guifg=#ffffff ctermfg=16
+  highlight NvimTreeFolderIcon guifg=#6495ED ctermfg=67
 ]]
 
 vim.cmd [[ 

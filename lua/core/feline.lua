@@ -25,8 +25,8 @@ M.mode = {
   end,
   hl = function()
     local mode_colors = {
-      NORMAL = 'cyan',
-      INSERT = 'green',
+      NORMAL = 'yellow',
+      INSERT = 'black',
       VISUAL = 'yellow',
       ['V-LINE'] = 'yellow',
       ['V-BLOCK'] = 'yellow',

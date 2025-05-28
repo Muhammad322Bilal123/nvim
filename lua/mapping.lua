@@ -9,8 +9,8 @@ local map = vim.keymap.set
 vim.keymap.set('n', '<leader>p', '"+p', { desc = "Paste from clipboard" })
 
 
--- Yank entire file to system clipboard
-vim.keymap.set('n', '<leader>y', ':%y+<CR>', { desc = "Copy entire file to clipboard" })
+-- -- Yank entire file to system clipboard
+vim.keymap.set('v', '<leader>y', '"+y', { noremap = true, silent = true, desc = "Copy to system clipboard" })
 
 -- ========================
 -- File explorer (NvimTree)
@@ -120,3 +120,11 @@ vim.keymap.set("n", "<leader>to", vim.cmd.UndotreeToggle)
 -- ╰──────────────────────────────────────────────────────────╯
 vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { noremap = true, silent = true, desc = "Code Action" })
 
+
+
+Aerial: Toggle symbol outline sidebar
+
+-- ╭──────────────────────────────────────────────────────────╮
+-- │ 🔧 Aerial: Toggle symbol outline sidebar        
+-- ╰──────────────────────────────────────────────────────────╯
+vim.keymap.set("n", "<leader>at", "<cmd>AerialToggle<CR>", { desc = "🧭 Toggle Aerial Symbol Tree" })
